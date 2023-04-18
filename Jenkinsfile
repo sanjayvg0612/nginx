@@ -14,7 +14,7 @@ pipeline
     stage('Docker Push') {
       steps {
             withCredentials([string(credentialsId: 'dockerhubpwd', variable: 'dockernginx')]) {
-          sh "docker login -u gsanjayvg06 -p dockernginx"
+          sh 'docker login -u gsanjayvg06 -p ${dockernginx}'
           sh 'docker push gsanjay06/dockerjenkins:nginx1.0'
         }
       }
