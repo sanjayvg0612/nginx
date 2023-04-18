@@ -23,8 +23,8 @@ pipeline
       steps {
           withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
         	sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
-          sh 'docker image rm -f nithyak12/nginx:nginx1.0'
-          sh 'docker pull nithyak12/nginx:nginx1.0'
+          sh 'docker image rm -f gsanjay06/dockerjenkins:nginx1.0'
+          sh 'docker pull gsanjay06/dockerjenkins:nginx1.0'
           sh 'docker run -d -p 8090:80 gsanjay06/dockerjenkins:nginx1.0'
         }
       }
