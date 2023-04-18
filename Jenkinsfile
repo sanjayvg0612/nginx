@@ -13,16 +13,16 @@ pipeline
     }
     stage('Docker Push') {
       steps {
-           	withCredentials([string(credentialsId: 'docker', variable: 'dockerhub')]) {
-        	sh "docker login -u ${env.docker} -p ${env.dockerhub}"
+            withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')])
+          sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
           sh 'docker push gsanjay06/dockerjenkins:nginx1.0'
         }
       }
     }
     stage('Docker deploy') {
       steps {
-              withCredentials([string(credentialsId: 'docker', variable: 'dockerhub')]) {
-        	sh "docker login -u ${env.docker} -p ${env.dockerhub}"
+          withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')])
+          sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"         
           sh 'docker image rm -f gsanjay06/dockerjenkins:nginx1.0'
           sh 'docker pull gsanjay06/dockerjenkins:nginx1.0'
           sh 'docker run -d -p 8090:80 gsanjay06/dockerjenkins:nginx1.0'
