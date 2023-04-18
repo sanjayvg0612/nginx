@@ -22,7 +22,7 @@ pipeline
     stage('Docker deploy') {
       steps {
           withCredentials([string(credentialsId: 'dockerhubpwd', variable: 'dockernginx')]) {         
-          sh "docker login -u gsanjayvg06 -p dockernginx"
+          sh 'docker login -u gsanjay06 -p  ${dockernginx}'
            sh 'docker image rm -f gsanjay06/dockerjenkins:nginx1.0'
           sh 'docker pull gsanjay06/dockerjenkins:nginx1.0'
           sh 'docker run -d -p 8090:80 gsanjay06/dockerjenkins:nginx1.0'
