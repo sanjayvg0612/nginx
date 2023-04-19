@@ -30,4 +30,10 @@ pipeline
       }
     }
   }
+  post{
+    always
+    {
+      slackSend channel: 'queries', message: 'checkout the queries'
+    }
+  } 
 }
