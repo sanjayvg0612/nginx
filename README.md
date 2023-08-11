@@ -253,7 +253,7 @@ sudo systemctl status artifactory
 
  ![App Screenshot](https://snipboard.io/SIrGyd.jpg)
 
- Use admin as User and admin as passowrd for login afterthat you can change the passowrd.
+> Use admin as User and admin as passowrd for login afterthat you can change the password.
 ### INTEGRATE ARTIFACTORY WITH JENKINS
 
 You can now login to a Jenkins instance. Install the Artifactory plug-in with the help of the below path Manage Jenkins ->Jenkins Plugins->available ->artifactory.
@@ -265,9 +265,8 @@ To create a token in Jfrog , Go to Jfrog Platform -> Administration -> User Mana
 
 ![App Screenshot](https://snipboard.io/tBgfCN.jpg)
 
-Go to Manage Jenkins-> Manage Credentials-> Choose Secret Text type credential and add the password of jfrog through you login to Jfrog Platform add ID and Description as jfrog-password
+Go to Manage Jenkins-> Manage Credentials-> Choose Secret Text type credential and add the token and  add ID and Description.
 
-![App Screenshot](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*cW5v50HBTOalCMDusomtMg.png)
 
 Configure the JFrog Artifactory with username and password.
 
