@@ -108,18 +108,47 @@ volumes:
 ```
 After Setup the SonarQube, You can get the sonarqube login page on http://IP-ADDRESS:9000
 
+![App screenshot](https://snipboard.io/wvnPhL.jpg)
+
+> **Use admin as USER and admin as PASSWORD for Initial login.**
 ## INTEGRATION OF SONARQUBE WITH JENKINS:
 Install suitable plugins for the Sonarqube server and scanner.
 
 Restart the Jenkins server.
 
-![App Screenshot](https://snipboard.io/rlL7Sa.jpg)
+From the Jenkins Dashboard, navigate to Manage Jenkins > Manage Plugins and install the SonarQube Scanner plugin.
 
+Back at the Jenkins Dashboard, navigate to Credentials > System from the left navigation.
+
+Click the Global credentials (unrestricted) link in the System table.
+
+Click Add credentials in the left navigation and add the following information:
+
+Use secret text.
+
+Secret: Generate a token at User > My Account > Security in SonarQube, and copy and paste it here.
 
 You will find the token in the SonarQube Settings.
 
+![App Screenshot](https://snipboard.io/l8hg0K.jpg)
+
+From the Jenkins Dashboard, navigate to Manage Jenkins > Configure System.
+
+From the SonarQube Servers section, click Add SonarQube.
+
+> Name: Give a unique name to your SonarQube instance.
+
+> Server URL: Your SonarQube instance URL.
+
+> Credentials: Select the credentials created for Sonarqube.
+
+![App Screenshot](https://snipboard.io/rlL7Sa.jpg)
+
+
+
+
 Then you need to update the SonarQube Scanner in Jenkins Tools.
-#
+
 ![App Screenshot](https://snipboard.io/xhNWPR.jpg)
 
 
@@ -127,9 +156,14 @@ Then you need to update the SonarQube Scanner in Jenkins Tools.
 Once you Configure these things, you can create the pipeline for the SonarQube Integration with Jenkins.
 
 
+
+
+
 You can refer to this link for creating the pipeline [sonar documentation](https://docs.sonarsource.com/sonarqube/latest/analyzing-source-code/scanners/jenkins-extension-sonarqube)
 
 > **Once you build the code and run the pipeline. If your file contains any bugs or any other issues you can find in your sonarqube server.** 
+
+![App Screenshot](https://snipboard.io/0OJ6yr.jpg)
 # JFrog Integration With Jenkins
 
 In this phase, we will learn how to install SonarQube and How to integrate with Jenkins.
@@ -216,21 +250,48 @@ sudo systemctl status artifactory
 ```
 
  After Setup the JFrog Artifactory, You can get the JFrog Artifactory login page in your screen on http://yourinstanceip:8081
+
+ ![App Screenshot](https://snipboard.io/SIrGyd.jpg)
+
+ Use admin as User and admin as passowrd for login afterthat you can change the passowrd.
 ### INTEGRATE ARTIFACTORY WITH JENKINS
 
 You can now login to a Jenkins instance. Install the Artifactory plug-in with the help of the below path Manage Jenkins ->Jenkins Plugins->available ->artifactory.
 
 ![App Screenshot](https://miro.medium.com/v2/resize:fit:828/0*uiENl_EZn_0Dv7vI)
 
+
+To create a token in Jfrog , Go to Jfrog Platform -> Administration -> User Management -> Access Tokens -> Add Description and add username through which you login into jfrog account and add the Expiration time and Generate Token.
+
+![App Screenshot](https://snipboard.io/tBgfCN.jpg)
+
+Go to Manage Jenkins-> Manage Credentials-> Choose Secret Text type credential and add the password of jfrog through you login to Jfrog Platform add ID and Description as jfrog-password
+
+![App Screenshot](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*cW5v50HBTOalCMDusomtMg.png)
+
+Configure the JFrog Artifactory with username and password.
+
+![App Screenshot](https://snipboard.io/Gtmf74.jpg)
+
 You need to add Jfrog URL & Deployer Credentials in System Configuration with the help of the below path: Manage Jenkins -> System Configuration -> JFrog Platform Instances.
 
-![App Screenshot](https://miro.medium.com/v2/resize:fit:1400/0*mYRkwN-fJPsE-dpx)
+![App Screenshot](https://snipboard.io/CgwrZj.jpg)
 
-You can refer this link to install the plugins  [JFrog Plugins](https://plugins.jenkins.io/jfrog/)
 
-After install the plugins and update the credentials. Next create the pipeline for JFrog integration with jenkins.
 
-You can Refer the link to build the declarative pipeline 
+In Jfrog Platform , we will now create different repositories ( Go to Administration -> Repositories -> Create a Local Generic Repository. 
+
+Mention this Repository to the upload the artifacts that are created in the jenkins pipeline.
+
+![App Screenshot](https://snipboard.io/HGDXEl.jpg)
+
+You can refer this link to install the plugins and set the Artifactory in Jenkins:  [JFrog Plugins](https://plugins.jenkins.io/jfrog/)
+
+
+
+You can Refer the link to build the declarative pipeline:
 [pipeline documentation](https://jfrog.com/help/r/jfrog-integrations-documentation/working-with-pipeline-jobs-in-jenkins)
 
 **Once you build the code and run the pipeline. You will find the file in your JFrog Artifactory.** 
+
+![App Screenshot](https://snipboard.io/FZqSpC.jpg)
